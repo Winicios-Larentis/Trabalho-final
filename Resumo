@@ -1,0 +1,23 @@
+O trabalho que tivemos que discorrer conforme as quatro opções sugeridas pelo professor teve como principal objetivo testar nossos conhecimentos a respeito da matéria contemplada neste primeiro semestre da faculdade cujo os principais temas abordados foram vetores/matrizes com alocação dinâmica de memória e ponteiros, estruturas de repetição, modularização,  passagem de parâmetro por valor e referência e registro.
+
+Minha escolha para o trabalho foi: máscara de convolução cujo o intuito dessa matéria é passar um filtro(outra matriz) dentro de uma matriz, gerando uma matriz resultante com características associadas ao filtro escolhido.
+
+Para começar eu criei vários módulos cuja suas funções são de alocar memória, carregar as matizes e  escrevê-las para o usuário e à medida que eu acrescentava algum módulo também fazia a prototipação do mesmo. 
+dentre os módulos criados: 
+
+Alocação de memória: de acordo com a matriz aloca-se a memória necessária para seu funcionamento, como todas as matrizes eram de inteiros bastava saber quantas posições a matriz tinha e multiplicar pela suas posições informando o tipo de dado inteiro
+
+Carregar a matriz: para todas as matrizes utilizadas bastou percorrê- las adicionar um valor randômico a cada posição, no módulo do “resultado” foi implementado a lógica do algoritmo que já acompanhava o problema.
+
+Escreve matriz: para escrevê-las para o usuário, foi utilizado uma estrutura de repetição para percorrer a matriz e escrever os resultados como uma tabela.
+
+Alocação dinâmica de memória e ponteiros e seu emprego no código:
+
+seguindo os parâmetros passados para fazer o trabalho foi usado alongamento dinâmico de memória e ponteiros cujo o objetivo num código e torná-lo mais eficiente e otimizado, através da alocação dinâmica de memória o programador tem total controle da quantidade de memória que ele irá  para cada processo de seu código, deixando o código flexível e adaptado no que será empregado, o mesmo vale para ponteiros que por sua vez tem o objetivo de trabalhar, uma vez que a memória requerida já foi alocada, com seu endereço, evitando cópias de valores desnecessárias  e apontando, quando solicitado, para o dado específico da memória que se deseja trabalhar. 
+
+Na função principal foi feito a união entre os trechos de códigos já desenvolvidos, os módulos, para que a função principal siga uma sequência lógica de execução os módulos são dispostos em sua estrutura de forma que quando requerido um procedimento específico o módulo que corresponde a essa necessidade é invocado, e pode ser invocado quantas vezes for preciso, organizando melhor o algoritmos e poupando ao desenvolvedor fazer linhas de código extras.
+
+
+  
+
+
