@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+#define TAMFIL 3
+
+
+void alocaMemoriaMatriz(int**);
+void alocaMemoriaFiltro(int**);
+void alocaMemoriaResultado(int**);
+void carregaMatriz(int**, int, int);
+void carregaFiltro(int**, int, int);
+void carregaResultado(int**, int**, int**, int, int);
+void escreveMatriz(int**);
+void escreveFiltro(int**);
+void escreveResultado(int**);
+
+int main(void) {
+  int **matriz, **filtro, **resultado;
+  int i, j;
+  carregaMatriz(matriz, i, j);
+  carregaFiltro(filtro, i, j);
+  carregaResultado(matriz, filtro, resultado, i, j);
+  escreveMatriz(matriz);
+  printf("\n\n\n");
+  escreveFiltro(filtro);
+  printf("\n\n\n");
+  escreveResultado(resultado);
+  
+  return 0;
+}
+
+void alocaMemoriaMatriz(int **matriz){
+  int i;
+  matriz = (int**)malloc(TAM * sizeof(int*));
+
+  for(i = 0; i < TAM; i++){
+    matriz[i] = (int*)malloc(TAM * sizeof(int));
+
+  }
+  if(matriz == NULL){
+    printf("erro");
+  }
+} 
+
+void alocaMemoriaFiltro(int **filtro){
+  int i;
+  filtro = (int**)malloc(TAMFIL * sizeof(int*));
+
+  for(i = 0; i < TAM; i++){
+    filtro[i] = (int*)malloc(TAMFIL * sizeof(int));
+
+  }
+  if(filtro == NULL){
+    printf("erro");
+  }
+} 
+
+void alocaMemoriaResultado(int **resultado){
+  int i;
+  resultado = (int**)malloc(TAM * sizeof(int*));
+
+  for(i = 0; i < TAM; i++){
+    resultado[i] = (int*)malloc(TAM * sizeof(int));
+
+  }
+  if(resultado == NULL){
+    printf("erro");
+  }
+} 
+
+
+void escreveMatriz(int **matriz){
+  int i, j;
+  for(i = 0; i < TAM; i++){
+    for(j = 0; j < TAM; j++){
+      printf("%d\t", matriz[i] [j]);
+    }
+    printf("\n");
+  }
+  for(i = 0; i < TAM; i++){
+		free(matriz[i]);
+  }
+  free(matriz);
+}
+
+void escreveFiltro(int **filtro){
+  int i, j;
+  for(i = 0; i < TAMFIL; i++){
+    for(j = 0; j < TAMFIL; j++){
+      printf("%d\t", filtro[i] [j]);
+    }
+    printf("\n");
+  }
+   for(i = 0; i < TAMFIL; i++){
+		free(filtro[i]);
+  }
+  free(filtro);
+}
+
+void escreveResultado(int **resultado){
+  int i, j;
+  for(i = 1; i < TAM-1; i++){
+    for(j = 1; j < TAM-1; j++){
+      printf("%d\t", resultado[i] [j]);
+    }
+    printf("\n");
+  }
+   for(i = 0; i < TAM; i++){
+		free(resultado[i]);
+  }
+  free(resultado);
+}
+
+void carregaMatriz(int **matriz, int i, int j){
+  alocaMemoriaMatriz(matriz);
+  for(i = 0; i < TAM; i++){
+    for(j = 0; j < TAM; j++){
+      matriz[i] [j] = rand() % 5;
+    }
+  }
+}
+
+void carregaFiltro(int **filtro, int i, int j){
+  alocaMemoriaFiltro(filtro);
+  for(i = 0; i < TAMFIL; i++){
+    for(j = 0; j < TAMFIL; j++){
+      filtro[i] [j] = rand() % 3;
+    }
+  }
+}
+
+void carregaResultado(int **matriz, int **filtro, int **resultado, int i, int j){
+  alocaMemoriaResultado(resultado);
+  int k, l,soma;
+    for (i=0; i < TAM-2; i++){
+      for (j=0; j < TAM-2; j++){
+        //percorrer o kernel
+        soma = 0;
+        for (k=0; k < TAMFIL; k++){
+          for (l=0; l < TAMFIL; l++){
+            soma = soma + (matriz[i+k][j+l] * filtro[k][l]);
+        }
+      }
+      resultado[i+1][j+1] = soma;
+    }
+  }
+}
+
