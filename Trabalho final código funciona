@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+#define TAMFIL 3
+
+
+void carregaMatriz(int[] [TAM]);
+void carregaFiltro(int[] [TAMFIL]);
+void carregaResultado(int[] [TAM], int[] [TAMFIL], int[] [TAM]);
+void escreveMatriz(int[] [TAM]);
+void escreveFiltro(int[] [TAMFIL]);
+void escreveResultado(int[] [TAM]);
+
+
+int main(void) {
+  int i, j, k, l;
+  int matriz[TAM] [TAM], filtro[TAMFIL] [TAMFIL], resultado[TAM] [TAM];
+
+  carregaMatriz(matriz);
+  carregaFiltro(filtro);
+  carregaResultado(matriz, filtro, resultado);
+  escreveMatriz(matriz);
+  printf("\n\n\n");
+  escreveFiltro(filtro);
+  printf("\n\n\n");
+  escreveResultado(resultado);
+
+
+
+  return 0;
+}
+
+void escreveMatriz(int matriz[] [TAM]){
+  int i, j;
+  for(i = 0; i < TAM; i++){
+    for(j = 0; j < TAM; j++){
+      printf("%i\t", matriz[i] [j]);
+    }
+    printf("\n");
+  }
+
+}
+
+void escreveFiltro(int filtro[] [TAMFIL]){
+  int i, j;
+  for(i = 0; i < TAMFIL; i++){
+    for(j = 0; j < TAMFIL; j++){
+      printf("%i\t", filtro[i] [j]);
+    }
+    printf("\n");
+  }
+}
+
+void escreveResultado(int resultado[] [TAM]){
+  int i, j;
+  for(i = 1; i < TAM-1; i++){
+    for(j = 1; j < TAM-1; j++){
+      printf("%i\t", resultado[i] [j]);
+    }
+    printf("\n");
+  }
+}
+
+void carregaMatriz(int matriz[] [TAM]){
+  int i, j;
+  for(i = 0; i < TAM; i++){
+    for(j = 0; j < TAM; j++){
+      matriz[i] [j] = rand() % 5;
+    }
+  }
+}
+
+void carregaFiltro(int filtro[] [TAMFIL]){
+  int i, j;
+  for(i = 0; i < TAMFIL; i++){
+    for(j = 0; j < TAMFIL; j++){
+      filtro[i] [j] = rand() % 3;
+    }
+  }
+}
+
+void carregaResultado(int matriz[] [TAM], int filtro[] [TAMFIL], int resultado[] [TAM]){
+  /*int i, j, k, l;
+  int cont;
+  for(i = 0; i < TAM; i++){
+    for(j = 0; j < TAM; j++){
+      cont = 0;
+      if((j - 1 < 0) && (i - 1 < 0)){
+        for (k = 0; k < TAMFIL; k++){
+          for (l = 0; l < TAMFIL; l++){
+            cont = cont + (matriz[i+k] [j+l] * filtro[k][l]);
+          }
+        }
+      }
+      resultado[i][j] = cont;
+    }
+  }*/
+    int i, j, k, l,soma;
+    for (i=0; i < TAM-2; i++){
+    for (j=0; j < TAM-2; j++){
+      //percorrer o kernel
+      soma = 0;
+      for (k=0; k < TAMFIL; k++){
+        for (l=0; l < TAMFIL; l++){
+            soma = soma + (matriz[i+k][j+l] * filtro[k][l]);
+        }
+      }
+      resultado[i+1][j+1] = soma;
+    }
+  }
+}
+
